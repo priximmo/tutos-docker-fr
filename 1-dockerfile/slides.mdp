@@ -1,0 +1,58 @@
+%title: Dockerfile
+%author: xavki
+%date: 2018-11-11
+
+-> C'est quoi Dockerfile ? <-
+=========
+
+<br>
+* fichier de configuration yaml
+	- double espaces
+
+<br>
+* objectif : création d'une image
+
+<br>
+* séquence d'instructions : 
+	- RUN : lancements de commandes (apt...)
+	- ENV : variables d'environnement
+	- EXPOSE : expositions de ports
+	- ...
+
+
+
+-------------------------------------------------
+
+-> Intérêts de dockerfile <-
+
+
+* relancer une création d'image à tout moment
+
+* meilleure visibilité sur ce qui est fait
+
+* partage facile et possibilité de gitter
+
+* script d'édition de docker file (variables...)
+
+* ne pas se poser de question lors du docker run du conteneur
+
+
+-------------------------------------------------
+
+-> Exemple de dockerfile <-
+
+```
+FROM ubuntu:latest
+MAINTAINER xavier
+RUN apt-get update \ 
+&& apt-get install -y vim git \ 
+&& apt-get clean \ 
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+```
+
+
+-> commande <-
+
+```
+docker build -t nomimage:version .
+```
