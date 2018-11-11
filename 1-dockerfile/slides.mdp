@@ -35,6 +35,8 @@
 
 * ne pas se poser de question lors du docker run du conteneur
 
+* création images prod // dev - CI // CD
+
 
 -------------------------------------------------
 
