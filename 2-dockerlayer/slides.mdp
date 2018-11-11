@@ -1,10 +1,10 @@
-%title: Dockerfile
+%title: Docker layer
 %author: xavki
 
--> C'est quoi Dockerfile ? <-
+-> Couches docker <-
 =========
 
-<br>
+
 * fichier de configuration yaml
 	- double espaces
 
