@@ -5,8 +5,7 @@
 =========
 
 <br>
-* fichier de configuration yaml
-	- double espaces
+* fichier de configuration
 
 <br>
 * objectif : création d'une image
@@ -16,6 +15,9 @@
 	- RUN : lancements de commandes (apt...)
 	- ENV : variables d'environnement
 	- EXPOSE : expositions de ports
+	- VOLUME : défition de volumes
+	- COPY : cp entre host et conteneur
+	- ENTRYPOINT : processus maître
 	- ...
 
 
