@@ -1,57 +1,106 @@
-%title: Docker layer
+%title: Docker layers
 %author: xavki
 
--> Couches docker <-
+-> Couches des images docker (layers) <-
 =========
 
 
-* fichier de configuration yaml
-	- double espaces
+-> Principes  <-
 
-<br>
-* objectif : création d'une image
+* deux type de couches:
+	- lecture seule
+	- lecture-écriture (conteneur)
 
-<br>
-* séquence d'instructions : 
-	- RUN : lancements de commandes (apt...)
-	- ENV : variables d'environnement
-	- EXPOSE : expositions de ports
-	- ...
+* couches peuvent se partager entre les images
 
-
-
--------------------------------------------------
-
--> Intérêts de dockerfile <-
-
-
-* relancer une création d'image à tout moment
-
-* meilleure visibilité sur ce qui est fait
-
-* partage facile et possibilité de gitter
-
-* script d'édition de docker file (variables...)
-
-* ne pas se poser de question lors du docker run du conteneur
+	conteneur 1    |   conteneur 2
+  ==============================
+  couche 1           couche A
+  couche 2           couche B
+             couche 3
+  couche 4           couche D
 
 
 -------------------------------------------------
 
--> Exemple de dockerfile <-
+-> Les couches d'une image <-
+
+Si Dockerfile
 
 ```
 FROM ubuntu:latest
-MAINTAINER xavier
-RUN apt-get update \ 
-&& apt-get install -y vim git \ 
-&& apt-get clean \ 
-&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends vim
+RUN apt-get install -y --no-install-recommends git
+```
+
+<br>
+Lister les couches
+
+```
+docker history monimage:maversion
+```
+
+Résultat
+
+```
+└─ $ ▶ docker history xavki:v1.0 --format "{{.ID}}\t{{.CreatedBy}}"
+7c995f4a51d8	/bin/sh -c apt-get install -y --no-install-r…
+71a2fedce726	/bin/sh -c apt-get install -y --no-install-r…
+7b957bd8d60d	/bin/sh -c apt-get update
+ea4c82dcd15a	/bin/sh -c #(nop)  CMD ["/bin/bash"]
+<missing>	/bin/sh -c mkdir -p /run/systemd && echo 'do…
+<missing>	/bin/sh -c rm -rf /var/lib/apt/lists/*
+<missing>	/bin/sh -c set -xe   && echo '#!/bin/sh' > /…
+<missing>	/bin/sh -c #(nop) ADD file:bcd068f67af2788db…
 ```
 
 
--> commande <-
+-------------------------------------------------
+
+-> Les couches d'une image <-
+
+Si Dockerfile
 
 ```
-docker build -t nomimage:version .
+FROM ubuntu:latest
+RUN apt-get update apt-get install -y --no-install-recommends vim git
+```
+
+<br>
+Résultat
+
+```
+└─ $ ▶ docker history xavki:v1.0 --format "{{.ID}}\t{{.CreatedBy}}"
+82b658850e03	/bin/sh -c apt-get update && apt-get install…
+ea4c82dcd15a	/bin/sh -c #(nop)  CMD ["/bin/bash"]
+<missing>	/bin/sh -c mkdir -p /run/systemd && echo 'do…
+<missing>	/bin/sh -c rm -rf /var/lib/apt/lists/*
+<missing>	/bin/sh -c set -xe   && echo '#!/bin/sh' > /…
+<missing>	/bin/sh -c #(nop) ADD file:bcd068f67af2788db…
+
+```
+
+-------------------------------------------------
+
+-> En mode écriture avec un run <-
+
+```
+docker run -tid --name test xavki:v1.0
+docker exec -ti test sh
+touch toto
+rm -rf srv/
+```
+
+Que se passe-t-il ?
+
+```
+└─ $ ▶ docker diff test
+A /toto
+D /srv
+```
+
+Si construction d'image à partir du conteneur
+```
+docker commit -m "création nouvelle image" test -t xavki:v2.0
 ```
