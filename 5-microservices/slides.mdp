@@ -1,0 +1,72 @@
+%title: Docker layers
+%author: xavki
+
+-> Les microservices <-
+=========
+
+<br>
+-> Intérêts <-
+
+* fractionner pour mieux maîtriser l'environnement
+	- réseau
+	- version de services
+	- ...
+
+* fractionner pour adapter la ressources
+	exemple :
+	- plus de workers : produire plus
+	- plus de serveurs web : recevoir plus de monde
+  - de manière indépendante
+
+* augmenter la vitesse de déploiement
+
+* réduire les single point of failure (SPOF)
+
+
+
+
+
+
+-------------------------------------------------
+
+-> Couches des images docker (layers) <-
+=========
+
+Si Dockerfile
+
+```
+FROM ubuntu:latest
+RUN apt-get update \
+    && apt-get install -y nginx
+COPY rollon.sh /
+RUN chmod 755 /rollon.sh
+VOLUME /usr/share/nginx/html/
+ENTRYPOINT ["./rollon.sh"]
+```
+
+
+-------------------------------------------------
+
+-> Les couches d'une image <-
+
+Si Dockerfile
+
+```
+FROM ubuntu:latest
+RUN apt-get update apt-get install -y --no-install-recommends vim git
+```
+
+<br>
+Résultat
+
+```
+└─ $ ▶ docker history xavki:v1.0 --format "{{.ID}}\t{{.CreatedBy}}"
+82b658850e03	/bin/sh -c apt-get update && apt-get install…
+ea4c82dcd15a	/bin/sh -c #(nop)  CMD ["/bin/bash"]
+<missing>	/bin/sh -c mkdir -p /run/systemd && echo 'do…
+<missing>	/bin/sh -c rm -rf /var/lib/apt/lists/*
+<missing>	/bin/sh -c set -xe   && echo '#!/bin/sh' > /…
+<missing>	/bin/sh -c #(nop) ADD file:bcd068f67af2788db…
+
+```
+
