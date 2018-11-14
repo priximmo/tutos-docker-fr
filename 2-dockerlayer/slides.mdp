@@ -13,13 +13,23 @@
 
 * couches peuvent se partager entre les images
 
-	conteneur 1    |   conteneur 2
+	image 1       |     image 2
   ==============================
   couche 1           couche A
   couche 2           couche B
              couche 3
   couche 4           couche D
 
+<br>
+* écriture
+
+	 conteneur 1  |     conteneur 2
+   ==============================
+R  couche 1           couche A
+R  couche 2           couche B
+R            couche 3
+R  couche 4           couche D
+RW couche 5           couche E
 
 -------------------------------------------------
 
