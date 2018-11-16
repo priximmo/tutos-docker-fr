@@ -1,0 +1,36 @@
+%title: Docker layers
+%author: xavki
+
+-> Cache docker <-
+=========
+
+<br>
+* but
+	- construire plus vite les images
+	- démarrer plus vite les conteneurs
+	- stocker des images légères
+	- partage de couches/cache
+
+-------------------------------------------------
+
+-> Démos <-
+
+* test simple : 
+
+	- lancer 2 fois de suite un build
+		- mention : using cache
+
+	- idem nom d'image différent
+
+* ne pas cacher : --no-cache
+
+* IMPORTANT : ordre de la construction
+	- éléments les plus variables à la fin
+
+-------------------------------------------------
+
+-> Attention à RUN <-
+
+* exemple RUN date (idem pour apt update)
+
+
