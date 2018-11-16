@@ -23,50 +23,106 @@
 * réduire les single point of failure (SPOF)
 
 
+-------------------------------------------------
+
+-> Exemple minimaliste <-
 
 
+* 1 page index.html à mettre à jour
+* 2 variables calculées (bash)
+
+
+* 3 conteneurs
+	- 1 serveur web nginx (affichage de la page)
+	- 2 conteneurs php (workers) => 1 par variable
 
 
 -------------------------------------------------
 
--> Couches des images docker (layers) <-
-=========
 
-Si Dockerfile
+-> Le conteneur web <-
+
+* Dockerfile
 
 ```
 FROM ubuntu:latest
-RUN apt-get update \
-    && apt-get install -y nginx
+RUN apt-get update
+RUN apt-get install -y nginx
+VOLUME /var/www/html/
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
+```
+
+
+-------------------------------------------------
+
+-> Les workers <-
+
+* Dockerfile
+
+```
+FROM php:7.2-cli
 COPY rollon.sh /
+COPY affichage.php /
 RUN chmod 755 /rollon.sh
-VOLUME /usr/share/nginx/html/
 ENTRYPOINT ["./rollon.sh"]
 ```
 
 
 -------------------------------------------------
 
--> Les couches d'une image <-
-
-Si Dockerfile
+-> Scripts rollon.sh <-
 
 ```
-FROM ubuntu:latest
-RUN apt-get update apt-get install -y --no-install-recommends vim git
+#!/bin/bash
+x=1
+while true
+do
+echo $x > /var/www/html/worker1.txt
+((x=x+100))
+php /affichage.php
+sleep 10
+done
 ```
 
-<br>
-Résultat
+-------------------------------------------------
+
+-> Script affichage.php <-
 
 ```
-└─ $ ▶ docker history xavki:v1.0 --format "{{.ID}}\t{{.CreatedBy}}"
-82b658850e03	/bin/sh -c apt-get update && apt-get install…
-ea4c82dcd15a	/bin/sh -c #(nop)  CMD ["/bin/bash"]
-<missing>	/bin/sh -c mkdir -p /run/systemd && echo 'do…
-<missing>	/bin/sh -c rm -rf /var/lib/apt/lists/*
-<missing>	/bin/sh -c set -xe   && echo '#!/bin/sh' > /…
-<missing>	/bin/sh -c #(nop) ADD file:bcd068f67af2788db…
+<?php
+$file1='/var/www/html/worker1.txt';
+$file2='/var/www/html/worker2.txt';
+$Data1="";
+$Data2="";
 
+# worker1 data
+if (file_exists($file1)) {
+$fh = fopen($file1,'r');
+while ($line = fgets($fh)) {
+  $worker1 = $line;
+}
+fclose($fh);
+}
 ```
 
+-------------------------------------------------
+
+```
+# worker2 data
+if (file_exists($file2)) {
+$fh = fopen($file2,'r');
+while ($line = fgets($fh)) {
+  $worker2 = $line;
+}
+fclose($fh);
+}
+
+# affichage
+$File = "/var/www/html/index.html";
+$Handle = fopen($File, 'w');
+$Data1 = "worker 1 vaut ".$worker1."\n";
+fwrite($Handle, $Data1);
+$Data2 = "worker 2 vaut ".$worker2."\n";
+fwrite($Handle, $Data2);
+fclose($Handle);
+```
