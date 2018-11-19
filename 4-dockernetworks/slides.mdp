@@ -1,0 +1,61 @@
+%title: Networks
+%author: xavki
+
+-> Principaux <-
+=========
+
+
+-> Bridge <-
+
+* réseau par défaut
+	- 172.17.0.0/16
+
+* communication entre conteneur
+
+* couvre beaucoup de besoins
+
+* attention : les ip non fixes
+	- utiliser le nom de conteneur
+
+---------------------------------------------------------------------------
+
+
+-> Bridge personnalisé <-
+
+Création
+```
+docker network create -d bridge --subnet 172.30.0.0/16 mynetwork
+```
+
+Utilisation
+```
+docker run -tid --name conteneur1 --network alpine
+```
+
+
+---------------------------------------------------------------------------
+
+
+-> Autres cas --net <-
+
+* --net : none
+
+* --net : host
+
+* --net : container:<nomconteneur>
+
+<br>
+-> Autres cas --link <-
+
+* --link : container:<nomconteneur>
+
+* ajout dans /etc/hosts du conteneur
+
+---------------------------------------------------------------------------
+
+
+-> Et en plus... <-
+
+* --add-host <nomhost>:ip  : complète le /etc/hosts
+
+* --dns : ajoute les ip de serveurs dns 
