@@ -1,0 +1,68 @@
+%title: Docker sécurité
+%author: xavki
+
+-> Liste à non exhaustive <-
+=========
+
+
+-> Image docker bench <-
+
+```
+docker run -it --net host --pid host --userns host --cap-add audit_control \
+    -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \
+    -v /var/lib:/var/lib \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /usr/lib/systemd:/usr/lib/systemd \
+    -v /etc:/etc --label docker_bench_security \
+    docker/docker-bench-security
+```
+
+-------------------------------------------------
+
+-> La machine host <-
+
+* isolation suffisante niveau réseau et montage
+
+* up to date : système et composants (docker notamment)
+
+* héberger en fonction de la sensiblité des conteneurs
+
+* le user namespace (vidéo précédente)
+
+
+-------------------------------------------------
+
+-> Les images <-
+
+* ne jamais utiliser une image à l'aveugle
+	- check dockerfile
+	- check des scripts et fichiers annexés
+
+* gestion versionning image
+
+* gestion du versionning des paquets (dokerfile)
+
+* attention ajout repository
+	- Docker Content Trust (signature d'images)
+
+* pas de stockage des secrets
+	- docker secret prévu à cet effet
+	- les changer régulièrement
+
+* limiter au maximum les paquets 
+	- voir en supprimer après compilation
+
+-------------------------------------------------
+
+-> Les conteneurs <-
+
+* vérifier les logs (docker logs)
+
+* monitoring (ressources, process)
+
+* filesystème en lecture seul
+
+* limitation de la consommation de ressources 
+
+* limite d'appel au noyau
+
