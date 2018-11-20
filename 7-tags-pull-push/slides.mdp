@@ -1,0 +1,36 @@
+%title: Docker tags pull push
+%author: xavki
+
+-> Les tags <-
+
+* tags = très important pour le versionning (sécurité)
+
+```
+docker tag <image_source>:<version>  <images_dest>:<version>
+```
+
+* optimisation = 2 tags (v1.0 et latest)
+
+-------------------------------------------------
+
+-> Le push / pull <-
+
+* si registry par défaut (docker hub)
+```
+docker login
+```
+
+* si registry particulière
+```
+docker login <chemin_registry>
+```
+
+* push
+```
+docker push <registry><nom_image>:<version>
+```
+
+* pull
+```
+docker pull <registry><nom_image>:<version>
+```
