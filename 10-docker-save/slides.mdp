@@ -1,0 +1,24 @@
+%title: Docker save
+%author: xavki
+
+-> Sauvegarder une image en tar <-
+=========
+
+<br>
+-> Commandes <-
+
+pour archiver :
+
+```
+docker save -O dir/name.file <registry><image>:<version>
+```
+
+<br>
+pour charger l'image :
+
+```
+docker load -i <fichier.tar>
+```
+
+
+
