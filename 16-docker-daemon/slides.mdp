@@ -1,0 +1,42 @@
+%title: Docker socket
+%author: xavki
+
+-> *Socket d'écoute docker : pourquoi ?* <-
+
+<br>
+* commander docker à distance
+  - pseudo distant : 127.0.0.1
+  - autre machine
+  - services comme portainer
+
+-------------------------------------------------------
+
+-> *Comment ?* <-
+
+
+<br>
+Editer/créer :
+
+sudo vim /etc/systemd/system/docker.service.d/startup_options.conf
+
+```
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+```
+
+puis
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+Test
+
+```
+docker -H tcp://127.0.0.1:2375 ps
+```
+
+
+
