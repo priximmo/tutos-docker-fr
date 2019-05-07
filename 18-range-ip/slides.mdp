@@ -1,0 +1,50 @@
+%title: Docker plage ip
+%author: xavki
+
+-> Docker0 : changer plage ip <-
+
+
+<br>
+* interface par défaut docker0 = bridge docker
+
+
+<br>
+* vérifications
+
+```
+route -n
+docker network inspect
+iptables -L
+```
+
+-------------------------------------------------------------------
+
+
+-> Changement via daemon.json <-
+
+* doc :
+https://docs.docker.com/v17.09/engine/userguide/networking/default_network/custom-docker0/
+
+
+* ajout dans /etc/docker/daemon.json
+
+```
+{
+"bip": "192.168.1.1/24"
+}
+```
+
+
+* prise en compte
+
+```
+systemctl daemon-reload
+service docker restart
+```
+
+* si nécessaire suppression de l'interface docker0
+
+```
+ip link del docker0
+```
+
