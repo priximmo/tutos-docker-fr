@@ -1,0 +1,33 @@
+%title: Docker raccourcis
+%author: xavki
+
+-> Docker : raccourcis <-
+
+
+<br>
+* suppression d'un conteneur rapidement
+
+```
+docker rm -f <conteneur>
+```
+
+<br>
+* suppression de tous les conteneurs actifs ou non
+
+```
+docker rm -f $(docker ps -aq)
+```
+
+<br>
+* suppression d'une image
+
+```
+docker rmi <image>
+```
+
+<br>
+* nettoyage des éléments inactifs
+
+```
+docker system prune
+```
