@@ -7,7 +7,7 @@
 * si besoin vidéo pull/push/tags
 
 <br>
-* installation via conteneur docker => dokcer compose (tracabilité du fichier)
+* installation via conteneur docker => docker compose (tracabilité du fichier)
 
 <br>
 * sécuriser => important comme tous les dépôts
