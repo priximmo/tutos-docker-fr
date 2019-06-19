@@ -44,7 +44,8 @@
 * Memory CG : limites la mémoire disponible (encadre)
 
 <br>
-* Huge TBL : utilisation des pages mémoires de grandes tailles (performance)
+* Huge TBL : utilisation de la RAM par des pages de grandes tailles 
+			- impact important sur l'utilisation de la mémoire/performance
 
 <br>
 * CPU CG : allocation du CPU par group
