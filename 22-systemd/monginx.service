@@ -1,0 +1,17 @@
+[Unit]
+Description=Mon nginx
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+User=root
+Group=docker
+ExecStartPre=/usr/bin/docker-compose -f /chemin/complet/docker-compose.yml down -v
+ExecStart=/usr/bin/docker-compose -f /chemin/complet/docker-compose.yml up
+ExecStop=/usr/bin/docker-compose -f /chemin/complet/docker-compose.yml down -v
+SyslogIdentifier=monginx
+
+[Install]
+WantedBy=multi-user.target
+
