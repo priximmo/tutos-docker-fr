@@ -1,0 +1,26 @@
+# DOCKER
+
+## Tutoriels Gratuits en français sur Kubernetes
+
+- 1. [Premiers Pas](https://youtu.be/fdlZqRZXWOc)
+- 2. [Premier serveur web](https://youtu.be/NJ2berxUmgg)
+- 3. [Notion de Volumes](https://youtu.be/KjaiVP2p0C8)
+- 4. [CLI Docker volume](https://youtu.be/fNxHtOJsWSc)
+- 5. [Variables d'Environnement](https://youtu.be/hhX87u-omlI)
+- 6. [Créer une image à partir d'un conteneur](https://youtu.be/-jeeHiJ1B-0)
+- 7. [Créer une image à partir de Dockerfile](https://youtu.be/Ik_mC7JSJ-A)
+- 8. [Comprendre les couches et layers](https://youtu.be/oxAguWSpI_I)
+- 9.1.[Microservices avec docker : exemple](https://youtu.be/QLzwJpSkm8w)
+- 9.2.[Microservices : conclusion](https://youtu.be/RX96EugUNDk)
+- 10.[Docker : les caches](https://youtu.be/9v5BLxUCr00)
+- 11.[Docker : les réseaux](https://youtu.be/YcAWluYkVXc)
+- 12.[Sécuriser le User namespace](https://youtu.be/W6p_aiYplbM)
+- 13.[Bonnes pratiques de sécurité](https://youtu.be/VMzgt1434c8)
+- 14.[Registry : pull et push](https://youtu.be/Lu7klFVxvnY)
+- 15.[Images : export au format tar](https://youtu.be/MSWQsv68f4A)
+- 16.[Mettre en place la socket d'écoute pour les remotes](https://youtu.be/SEXicuBQQSY)
+- 17.[Images : le mutlistage build](https://youtu.be/tkfZGbYXVWc)
+- 18.[Changer le subnet par défaut](https://youtu.be/7VOrHSJZRQc)
+- 19.[Raccourcis pour gagner du temps](https://youtu.be/83gG6XxMYwM)
+- 20.[Registry : installation](https://youtu.be/HD7c0ZFwcJc)
+- 21.[Volumes : astuces pour les sauvegarder](https://youtu.be/bB9gjR_7HRo)
