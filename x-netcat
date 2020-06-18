@@ -1,0 +1,4 @@
+mkfifo myfifo
+nc -lkv 44444 <myfifo | nc -Uv /var/run/docker.sock >myfifo
+
+docker -H tcp://127.0.0.1:44444 images
