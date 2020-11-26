@@ -7,11 +7,15 @@
 
 
 <br>
+
+
 * une astuce : pas forcément une pratique courante
 
 * besoin de sauvegarder un volume docker nommé
 
 <br>
+
+
 * lancement d'un conteneur avec un volume nommé monvolume
 
 ```
@@ -19,6 +23,8 @@ docker run -tid --name monconteneur -v monvolume:/usr/share/nginx/html/ -p 80:80
 ```
 
 <br>
+
+
 * liste des volumes
 
 ```
@@ -33,6 +39,8 @@ docker volume ls
 
 
 <br>
+
+
 Principe :
 - lancer un conteneur de sauvegarde léger  alpine
 - lui monter le volume à sauvegarder  monvolume:/tmp/src
@@ -41,6 +49,8 @@ Principe :
 - prévoir la suppression automatique à la fin de la commande
 
 <br>
+
+
 Commande :
 
 ```
@@ -48,6 +58,8 @@ docker run --rm -v monvolume:/tmp/src -v /tmp/:/tmp/dest -u root alpine tar -czv
 ```
 
 <br>
+
+
 Vérification sur le host :
 
 ```

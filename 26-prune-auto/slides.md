@@ -4,6 +4,8 @@
 # Docker : prune
 
 <br>
+
+
 * system prune
 
 ```
@@ -28,6 +30,8 @@
 
 
 <br>
+
+
 * DinD (principe) : un conteneur qui contrôle les conteneurs...
 
 ```
@@ -35,6 +39,8 @@ docker run -ti --restart unless-stopped --name myprune -v /var/run/docker.sock:/
 ```
 
 <br>
+
+
 * pour le clean toutes les 24h
 
 ```

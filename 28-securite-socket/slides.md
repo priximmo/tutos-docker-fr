@@ -6,6 +6,8 @@
 
 
 <br>
+
+
 * faille de docker in docker ou de la socket docker
 
 * socket 
@@ -37,6 +39,8 @@ apt install docker.io
 # Docker : la faille de la socket
 
 <br>
+
+
 * et je me mets un petit conteneur pour faire mon curieux...
 
 ```
@@ -50,6 +54,8 @@ Host >> conteneur (docker) >> vous êtes ici !!!
 
 
 <br>
+
+
 * lister les partitions
 
 ```
@@ -57,6 +63,8 @@ fdisk -l
 ```
 
 <br>
+
+
 * monter la partition principale
 
 ```

@@ -4,6 +4,8 @@
 # Docker : logs vers ELK
 
 <br>
+
+
 * graylog format
 
 * doc : https://docs.docker.com/config/containers/logging/gelf/
@@ -33,6 +35,8 @@ output {
 
 
 <br>
+
+
 * test conteneur unique
 
 ```
@@ -40,6 +44,8 @@ docker run --log-driver gelf --log-opt gelf-address=udp://192.168.20.101:12201 a
 ```
 
 <br>
+
+
 
 * édition /etc/docker/daemon.json
 

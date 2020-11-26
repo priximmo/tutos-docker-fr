@@ -4,12 +4,18 @@
 # Docker : installation d'une registry
 
 <br>
+
+
 * si besoin vidéo pull/push/tags
 
 <br>
+
+
 * installation via conteneur docker => docker compose (tracabilité du fichier)
 
 <br>
+
+
 * sécuriser => important comme tous les dépôts
 
 
@@ -19,6 +25,8 @@
 * pour éviter le mode insecure (alerte docker)
 
 <br>
+
+
 ```
 mkdir certs/
 openssl req -x509 -newkey rsa:4096 -nodes -keyout certs/myregistry.key -out certs/myregistry.crt -days 365 -subj /CN=myregistry.my
@@ -35,12 +43,16 @@ Rq : attention aux droits (0600) sur la clef
 
 
 <br>
+
+
 * cas d'une authentification par user/password
 
 * autres méthodes possibles
 
 
 <br>
+
+
 * génération du fichier htpasswd
 
 

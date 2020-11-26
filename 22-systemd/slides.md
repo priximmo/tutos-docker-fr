@@ -4,12 +4,16 @@
 # Docker : gestion via systemd
 
 <br>
+
+
 * systemd = gestionnaire de processus system
 		- démarrage
 		- arrêt
 		- séquence
 
 <br>
+
+
 * pourquoi les applis docker ?
 		- rassurer les plus novices
 		- formaliser les lancements
@@ -17,6 +21,8 @@
 		- amélioration des logs dans syslog
 
 <br>
+
+
 * comment ?
 		- création d'un service systemd qui gère docker-compose
 		- arrêt / démarrage
@@ -31,10 +37,14 @@
 
 
 <br>
+
+
 /etc/systemd/system/<nom_service>.service
 
 
 <br>
+
+
 ```
 [Unit]
 Description=Mon nginx

@@ -4,6 +4,8 @@
 # Docker : --log-opt
 
 <br>
+
+
 * simuler la génération de log
 
 ```
@@ -14,20 +16,28 @@ watch du  -h */*.log*
 Rq : 100 nb block seconde + 120 nb secondes
 
 <br>
+
+
 * --log-opt max-size=1m : taille maxi du fichier
 
 Rq : attention au-delà = suppression
 
 <br>
+
+
 * --log-opt max-file=10
 
 <br>
+
+
 * --log-driver local : pour compresser
 
 Rq : watch du  -h */*/*.log*
 
 
 <br>
+
+
 * pour tous les conteneurs :
 
 ```

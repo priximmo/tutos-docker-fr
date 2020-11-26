@@ -5,6 +5,8 @@
 
 <br>
 
+
+
 * entrypoint = process de base du conteneur
 
 * CMD : commande par défaut (arguments/paramètres)
@@ -31,6 +33,8 @@ docker run --rm mini google.fr
 
 
 <br>
+
+
 * et également : entrypoint seul fonctionne
 
 ```
@@ -47,6 +51,8 @@ docker run --rm mini google.fr
 
 <br>
 
+
+
 ----------------------------------------------------------------
 
 
@@ -54,6 +60,8 @@ docker run --rm mini google.fr
 
 
 <br>
+
+
 * mais comment bien l'utiliser ?
 		* entrypoint = process
 		* CMD = paramètres par défaut
